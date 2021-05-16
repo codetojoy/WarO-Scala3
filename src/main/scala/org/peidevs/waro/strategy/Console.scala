@@ -4,7 +4,7 @@ package org.peidevs.waro.strategy
 import java.util.Scanner
 
 class Console extends Strategy {
-    def selectCard(prizeCard:Int, hand:List[Int], maxCard:Int): Int = {
+    def selectCard(prizeCard:Int, hand:List[Int], maxCard:Int): Int =
         println("\nCard in play: " + prizeCard)
         println("\nYour hand: " + hand)
         println("")
@@ -13,16 +13,14 @@ class Console extends Strategy {
         var ok = false
         var scanner = new Scanner(System.in)
 
-        while (!ok) {
+        while (!ok) do
             println("Enter your bid: ")
             bid = scanner.nextInt()
 
-            if (hand.contains(bid)) {
+            if hand.contains(bid) then
                 ok = true
-            }            
-        }
 
         return bid
-    }
+    end selectCard
 }
 
