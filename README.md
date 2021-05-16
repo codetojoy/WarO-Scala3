@@ -10,9 +10,8 @@ Details:
 ---------
 
 * to run: `./run.sh`
+* to test: `./test.sh`
 * uses `sbt`
-* TODO (MAY 2021)
-    - add unit tests from [this project](https://github.com/peidevs/WarO_Scala)
 
 Rules:
 ---------
