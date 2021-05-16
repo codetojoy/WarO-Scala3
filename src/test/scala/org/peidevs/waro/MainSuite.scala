@@ -11,40 +11,35 @@ import org.scalatestplus.junit.JUnitRunner
 @RunWith(classOf[JUnitRunner])
 class MainSuite extends AnyFunSuite {
     class MockDeckFactory(val mockList:List[Int]) extends DeckFactory {
-        override def newDeck(numCards:Int):List[Int] = {
+        override def newDeck(numCards:Int):List[Int] =
             mockList
-        }
     }
-    
+
     val maxCard = 9
     var config = new Config()
 
     val popCardStrategy = new PopCard()
     val maxCardStrategy = new MaxCard()
-    val minCardStrategy = new MinCard() 
-    val nearestCardStrategy = new NearestCard() 
+    val minCardStrategy = new MinCard()
+    val nearestCardStrategy = new NearestCard()
 
-    test("canary test for Main") {
-        val x = 2 + 2
-        assert(x == 4)
-    }
     test("integration test") {
         val mockList = (1 to maxCard).toList
         val mockDeckFactory = new MockDeckFactory(mockList)
         val dealer = new Dealer(mockDeckFactory)
-        
+
         val player1 = new Player("Brahms", maxCard, popCardStrategy)
         val player2 = new Player("Mozart", maxCard, popCardStrategy)
         val players = List(player1, player2)
 
         // test
         var table = dealer.deal(maxCard, players)
-        
+
         assert(2 == table.players.size)
         assert(3 == table.kitty.size)
         assert(3 == table.players(0).hand.size)
         assert(3 == table.players(1).hand.size)
-            
+
         assert((1 to 3).toList == table.kitty)
         assert((4 to 6).toList == table.players(0).hand)
         assert((7 to 9).toList == table.players(1).hand)
@@ -62,10 +57,10 @@ class MainSuite extends AnyFunSuite {
         config.numGames = 1
         config.deckFactory = mockDeckFactory
         var tourney = new Tourney(config)
-    
+
         // test
         tourney.playGames()
-        
+
         assert(0 == player1.playerStats.numGamesWon)
         assert(0 == player1.playerStats.numRoundsWon)
         assert(0 == player1.playerStats.total)
