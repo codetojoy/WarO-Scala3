@@ -6,10 +6,6 @@ import org.scalatestplus.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class PlayerStatsSuite extends AnyFunSuite {
-    test("canary test for PlayerStats") {
-        val x = 2 + 2
-        assert(x == 4)
-    }
     test("reset to zero") {
         var playerStats = new PlayerStats(9,9,9)
 
@@ -33,7 +29,7 @@ class PlayerStatsSuite extends AnyFunSuite {
     test("win a game") {
         var playerStats = new PlayerStats(1,1,1)
 
-        // test 
+        // test
         playerStats.winsGame()
 
         assert(1 == playerStats.total)

@@ -15,15 +15,10 @@ class DealerSuite extends AnyFunSuite {
     val maxCard = 60
 
     class MockDeckFactory(val mockList:List[Int]) extends DeckFactory {
-        override def newDeck(numCards:Int):List[Int] = {
+        override def newDeck(numCards:Int):List[Int] =
             mockList
-        }
     }
 
-    test("canary test for Dealer") {
-        val x = 2 + 2
-        assert(x == 4)
-    }
     test("deal cards") {
         val mockList = (1 to maxCard).toList
         val dealer = new Dealer(new MockDeckFactory(mockList))
@@ -35,7 +30,7 @@ class DealerSuite extends AnyFunSuite {
         var table = dealer.deal(maxCard, players)
 
         assert(2 == table.players.size)
-        assert(20 == table.kitty.size)            
+        assert(20 == table.kitty.size)
         assert((1 to 20).toList == table.kitty)
         assert(20 == table.players(0).hand.size)
         assert((21 to 40).toList == table.players(0).hand)
@@ -49,7 +44,7 @@ class DealerSuite extends AnyFunSuite {
 
         // test
         var table = dealer.deal(33, players)
-        
+
         assert(2 == table.players.size)
         assert(11 == table.players(0).hand.size)
         assert(11 == table.players(1).hand.size)
@@ -58,7 +53,7 @@ class DealerSuite extends AnyFunSuite {
     test("deal cards case 1b") {
         // test
         val hands = dealer.dealHands(21,2)
-        
+
         assert(3 == hands.size)
         assert(7 == hands(0).size)
         assert(7 == hands(1).size)
@@ -72,7 +67,7 @@ class DealerSuite extends AnyFunSuite {
 
         // test
         val bid:Bid = dealer.findRoundWinner(prizeCard, players)
-        
+
         assert(10 == bid.offer)
         assert("Mozart" == bid.player.name)
     }
@@ -85,7 +80,7 @@ class DealerSuite extends AnyFunSuite {
 
         // test
         val bid:Bid = dealer.findRoundWinner(prizeCard, players)
-        
+
         assert(15 == bid.offer)
         assert("Brahms" == bid.player.name)
     }
@@ -97,7 +92,7 @@ class DealerSuite extends AnyFunSuite {
 
         // test
         val winner = dealer.playRound(prizeCard, players)
-        
+
         assert("Mozart" == winner.name)
     }
     test("deal cards case 2") {
