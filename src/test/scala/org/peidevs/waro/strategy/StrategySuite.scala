@@ -6,10 +6,6 @@ import org.scalatestplus.junit.JUnitRunner
 
 @RunWith(classOf[JUnitRunner])
 class StrategySuite extends AnyFunSuite {
-    test("canary test for Strategy") {
-        val x = 2 + 2
-        assert(x == 4)
-    }
     test("pop strategy") {
         val popCard = new PopCard()
         val bid = popCard.selectCard(8, List(4,5,6), 10)
