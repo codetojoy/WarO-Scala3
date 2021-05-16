@@ -9,18 +9,16 @@ class Tourney(val config:Config) {
     val numCards:Int = config.numCards
     val players:List[Player] = config.players
 
-    def playGames() = {
-        for (i <- 1 to numGames) {
+    def playGames() =
+        for (i <- 1 to numGames)
             players.foreach { _.clear() }
             def game = new Game(config.deckFactory)
             game.playGame(numCards, players)
-        }
-        
+
         println("\nTourney summary:  ")
 
         players.foreach { p =>
             println(p.name + " won " + p.playerStats.numGamesWon + " times in " + numGames + " games")
-        }        
-        
-    }
+        }
+    end playGames
 }
